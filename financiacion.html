@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luminente | Financiación</title>
+    <title>LUMINENTE | Inversión</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #00F2FF; --bg: #030303; }
-        body { background: var(--bg); color: #FFFFFF; font-family: 'JetBrains Mono', monospace; margin: 0; }
-        nav { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid rgba(0, 242, 255, 0.2); }
-        .finance-panel {
-            background: rgba(10, 10, 10, 0.9);
-            border: 1px solid rgba(0, 242, 255, 0.15);
-            clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
+        :root { --accent: #00F2FF; --bg: #030303; --grid: rgba(0, 242, 255, 0.15); }
+        body { background: var(--bg); color: #FFFFFF; font-family: 'JetBrains Mono', monospace; margin: 0; overflow-x: hidden; }
+        
+        .wireframe { position: fixed; inset: 0; z-index: -3; background-image: radial-gradient(circle at 1px 1px, var(--accent) 1px, transparent 0), linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 50px 50px; opacity: 0.5; }
+        .moving-grid { position: fixed; bottom: -20%; left: -50%; width: 200%; height: 100%; background-image: linear-gradient(var(--grid) 2px, transparent 2px), linear-gradient(90deg, var(--grid) 2px, transparent 2px); background-size: 100px 100px; transform: perspective(500px) rotateX(60deg); z-index: -2; mask-image: linear-gradient(to top, black, transparent); animation: moveGrid 20s linear infinite; }
+        @keyframes moveGrid { from { background-position: 0 0; } to { background-position: 0 100px; } }
+
+        /* Navegación Index */
+        #menu-toggle { display: none; }
+        .nav-link { color: #888; transition: 0.3s; position: relative; letter-spacing: 0.2em; }
+        .nav-link:hover { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+        .nav-active { color: var(--accent); text-shadow: 0 0 15px var(--accent); font-weight: 700; }
+        .nav-active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+        @media (max-width: 768px) {
+            #menu { display: none; flex-direction: column; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(3, 3, 3, 0.95); backdrop-filter: blur(30px); padding: 120px 40px; gap: 40px; z-index: 100; text-align: left; }
+            #menu-toggle:checked ~ #menu { display: flex; }
         }
-        .btn-pay { background: var(--accent); color: #000; font-weight: 900; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); }
+
+        .ham-icon { width: 30px; height: 22px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; z-index: 110; position: relative; }
+        .ham-icon span { display: block; height: 3px; width: 100%; background: var(--accent); box-shadow: 0 0 8px var(--accent); transition: 0.3s; }
+        #menu-toggle:checked ~ .ham-icon span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+        #menu-toggle:checked ~ .ham-icon span:nth-child(2) { opacity: 0; }
+        #menu-toggle:checked ~ .ham-icon span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+        .finance-panel { background: rgba(10, 10, 10, 0.95); border: 1px solid rgba(0, 242, 255, 0.2); clip-path: polygon(5% 0, 100% 0, 100% 85%, 95% 100%, 0 100%, 0 15%); box-shadow: 0 0 50px rgba(0,242,255,0.05); }
+        .btn-pay { background: var(--accent); color: #000; font-weight: 900; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); transition: 0.4s; }
+        .btn-pay:hover { background: #fff; transform: scale(1.05); box-shadow: 0 0 40px var(--accent); }
     </style>
 </head>
-<body>
-    <nav class="fixed w-full z-50 p-4 md:px-12 flex justify-between items-center">
-        <div class="font-['Orbitron'] font-bold text-cyan-400 text-xs tracking-widest">LUMINENTE_CORE</div>
-        <div class="flex space-x-6 md:space-x-12 text-[9px] md:text-[11px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="text-gray-500">Inicio</a>
-            <a href="documentacion.html" class="text-gray-500">Documentación</a>
-            <a href="financiacion.html" class="text-cyan-400 border-b border-cyan-400 pb-1">Financiación</a>
+<body class="flex flex-col min-h-screen">
+    <div class="wireframe"></div>
+    <div class="moving-grid"></div>
+
+    <nav class="fixed w-full p-6 md:px-16 z-50 bg-black/40 backdrop-blur-xl border-b border-cyan-500/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-3 h-3 bg-cyan-500 rounded-full shadow-[0_0_12px_#00F2FF]"></div>
+                <span class="font-['Orbitron'] font-black text-white text-xs md:text-sm tracking-[0.5em]">LUMINENTE_4.0</span>
+            </div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="md:hidden ham-icon"><span></span><span></span><span></span></label>
+            <div id="menu" class="md:flex md:space-x-16 text-[11px] font-bold uppercase tracking-[0.3em]">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="documentacion.html" class="nav-link">Documentación</a>
+                <a href="financiacion.html" class="nav-active">Financiación</a>
+            </div>
         </div>
     </nav>
 
-    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div class="finance-panel p-10 md:p-20 max-w-3xl w-full text-center">
-            <h2 class="font-['Orbitron'] text-3xl md:text-5xl text-white mb-8 font-black uppercase">ADQUISICIÓN</h2>
-            <p class="text-gray-400 text-xs md:text-sm mb-10 uppercase tracking-widest">Nodo Alpha v.01 // Acceso Temprano</p>
-            <div class="text-5xl md:text-7xl font-['Orbitron'] text-cyan-400 mb-12">Ξ 0.40</div>
-            <button class="btn-pay w-full max-w-sm py-5 text-xs font-black uppercase tracking-widest hover:bg-white transition">
-                Iniciar Contrato
-            </button>
+    <section class="flex-grow flex items-center justify-center px-8 pt-20 relative z-10">
+        <div class="finance-panel p-12 md:p-32 max-w-5xl w-full text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
+            <h2 class="font-['Orbitron'] text-4xl md:text-8xl text-white mb-10 font-black uppercase tracking-tighter">CONTRATO</h2>
+            <div class="text-6xl md:text-[9rem] font-['Orbitron'] text-white mb-16 font-black tracking-tighter drop-shadow-lg">Ξ 0.40</div>
+            <button class="btn-pay w-full max-w-md py-8 text-[12px] font-black uppercase tracking-[0.5em]">Firmar_Transacción</button>
+            <p class="mt-16 text-[9px] text-white/20 uppercase tracking-[0.3em]">Luminente Neural Systems © 2026</p>
         </div>
     </section>
 </body>
