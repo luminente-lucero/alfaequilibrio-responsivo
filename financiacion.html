@@ -3,51 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMINENTE | Inversión</title>
+    <title>Luminente | Financiación</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #00F2FF; --bg: #030303; }
         body { background: var(--bg); color: #FFFFFF; font-family: 'JetBrains Mono', monospace; margin: 0; }
-        .wireframe { position: fixed; inset: 0; z-index: -1; background-image: radial-gradient(var(--accent) 1.5px, transparent 1.5px); background-size: 40px 40px; opacity: 0.15; }
-        
-        .finance-panel { 
-            background: rgba(10, 10, 10, 0.95); 
-            border: 1px solid rgba(0, 242, 255, 0.2); 
-            clip-path: polygon(5% 0, 100% 0, 100% 85%, 95% 100%, 0 100%, 0 15%); 
-            box-shadow: 0 0 50px rgba(0,242,255,0.05);
+        nav { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid rgba(0, 242, 255, 0.2); }
+        .finance-panel {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
         }
-        .btn-pay { 
-            background: var(--accent); 
-            color: #000; 
-            font-weight: 900; 
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); 
-            transition: 0.4s;
-            box-shadow: 0 0 20px rgba(0,242,255,0.3);
-        }
-        .btn-pay:hover { background: #fff; transform: scale(1.05) skewX(-2deg); box-shadow: 0 0 40px var(--accent); }
+        .btn-pay { background: var(--accent); color: #000; font-weight: 900; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
-    <nav class="p-8 md:px-16 flex justify-between items-center border-b border-cyan-500/10">
-        <a href="index.html" class="font-['Orbitron'] font-black text-white text-xs tracking-[0.4em]">REGRESAR_//</a>
-        <div class="text-[10px] font-bold text-cyan-500 tracking-widest uppercase opacity-60">Status: Secure_Link</div>
+<body>
+    <nav class="fixed w-full z-50 p-4 md:px-12 flex justify-between items-center">
+        <div class="font-['Orbitron'] font-bold text-cyan-400 text-xs tracking-widest">LUMINENTE_CORE</div>
+        <div class="flex space-x-6 md:space-x-12 text-[9px] md:text-[11px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="text-gray-500">Inicio</a>
+            <a href="documentacion.html" class="text-gray-500">Documentación</a>
+            <a href="financiacion.html" class="text-cyan-400 border-b border-cyan-400 pb-1">Financiación</a>
+        </div>
     </nav>
 
-    <section class="flex-grow flex items-center justify-center px-8">
-        <div class="finance-panel p-12 md:p-32 max-w-5xl w-full text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
-            
-            <h2 class="font-['Orbitron'] text-4xl md:text-8xl text-white mb-10 font-black uppercase tracking-tighter">CONTRATO</h2>
-            <p class="text-cyan-500 text-xs mb-16 tracking-[0.5em] uppercase font-bold">Transferencia de activos para desarrollo Alpha</p>
-            
-            <div class="text-6xl md:text-[9rem] font-['Orbitron'] text-white mb-16 font-black tracking-tighter drop-shadow-lg">
-                Ξ 0.40
-            </div>
-            
-            <button class="btn-pay w-full max-w-md py-8 text-[12px] font-black uppercase tracking-[0.5em]">Firmar_Transacción</button>
-            
-            <p class="mt-16 text-[9px] text-white/20 uppercase tracking-[0.3em]">Luminente Neural Systems © 2026 // Distributed Network</p>
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="finance-panel p-10 md:p-20 max-w-3xl w-full text-center">
+            <h2 class="font-['Orbitron'] text-3xl md:text-5xl text-white mb-8 font-black uppercase">ADQUISICIÓN</h2>
+            <p class="text-gray-400 text-xs md:text-sm mb-10 uppercase tracking-widest">Nodo Alpha v.01 // Acceso Temprano</p>
+            <div class="text-5xl md:text-7xl font-['Orbitron'] text-cyan-400 mb-12">Ξ 0.40</div>
+            <button class="btn-pay w-full max-w-sm py-5 text-xs font-black uppercase tracking-widest hover:bg-white transition">
+                Iniciar Contrato
+            </button>
         </div>
     </section>
 </body>
